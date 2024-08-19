@@ -1,13 +1,18 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
+import useCartStore from '@/app/store/cartstore';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState('');
+  const addToCart = useCartStore((state: any) => state.addToCart);
+
+  const router = useRouter();
 
   // Function to render stars based on rating
-  const renderStars = (rating) => {
+  const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
@@ -48,7 +53,7 @@ const Products = () => {
     return matchesCategory;
   });
 
-  const convertPriceToNPR = (price) => {
+  const convertPriceToNPR = (price: number) => {
     const USD_TO_NPR_CONVERSION_RATE = 134.74;
     return price * USD_TO_NPR_CONVERSION_RATE;
   };
@@ -77,6 +82,7 @@ const Products = () => {
           <div
             key={item.id}
             className="border p-4 rounded-lg shadow-lg"
+            onClick={() => router.push(`/products/${item.id}`)}
           >
             <img
               src={item.thumbnail}
@@ -97,8 +103,7 @@ const Products = () => {
               Category: {item.category}
             </p>
             <p className="text-sm text-gray-500 mt-1">
-              Date Created:{' '}
-              {new Date(item.dateCreated).toLocaleDateString('en-GB')}
+              Date Created: {new Date(item.dateCreated).toLocaleDateString('')}
             </p>
             <p className="text-gray-600 mt-2">{item.description}</p>
             <button

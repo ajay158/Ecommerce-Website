@@ -1,11 +1,7 @@
-import Navbar from '@/components/navbar/page';
-import Products from '@/components/products/page';
+import React from 'react';
 
-export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <Products />
-    </>
-  );
-}
+const Home = () => {
+  return <div></div>;
+};
+
+export default Home;
