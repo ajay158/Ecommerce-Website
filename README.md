@@ -40,7 +40,7 @@
 -Form handling is done using React Hook Form.
 
 #Technologies Used
-ReactJS: For building the user interface.
+NEXTJS: For building the user interface.
 Zustand: For state management across the application.
 Tailwind CSS / Styled Components: For styling the components and layouts.
 React Hook Form: For handling form data and submissions.
