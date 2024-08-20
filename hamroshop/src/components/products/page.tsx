@@ -7,7 +7,7 @@ import useCartStore from '@/app/store/cartstore';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState('');
-  const addToCart = useCartStore((state: any) => state.addToCart);
+  // const addToCart = useCartStore((state: any) => state.addToCart);
 
   const router = useRouter();
 
@@ -90,29 +90,9 @@ const Products = () => {
               className="w-full h-auto rounded-lg"
             />
             <h2 className="font-bold">{item.title}</h2>
-            <p className="text-sm text-gray-500 mt-1 flex">
-              Rating: {renderStars(item.rating)}
-            </p>
             <p className="text-gray-900 font-semibold mt-2">
               Rs. {convertPriceToNPR(item.price).toLocaleString()}
             </p>
-            <p className="text-sm text-gray-500 mt-1">
-              {item.stock > 0 ? `In Stock: ${item.stock}` : 'Out of Stock'}
-            </p>
-            <p className="text-sm text-gray-500 mt-1">
-              Category: {item.category}
-            </p>
-            <p className="text-sm text-gray-500 mt-1">
-              Date Created: {new Date(item.dateCreated).toLocaleDateString('')}
-            </p>
-            <p className="text-gray-600 mt-2">{item.description}</p>
-            <button
-              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded disabled:bg-gray-400"
-              onClick={() => addToCart(item)}
-              disabled={item.stock <= 0}
-            >
-              {item.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-            </button>
           </div>
         ))}
       </div>
